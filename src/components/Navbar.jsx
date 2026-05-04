@@ -1,4 +1,5 @@
 "use client";
+import { Separator } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,14 +13,14 @@ const Navbar = () => {
             src={"/logo.png"}
             alt="logo"
             loading="eager"
-            width={30}
-            height={30}
+            width={20}
+            height={20}
             className="object-cover h-auto w-auto"
           />
           <h3 className="font-black text-lg">pixgen.</h3>
         </div>
 
-        <ul className="flex items-center gap-5 text-sm">
+        <ul className="flex items-center gap-2 text-xs font-semibold md:text-sm md:gap-5">
           <li>
             <Link href={"/"}>Home</Link>
           </li>
@@ -34,11 +35,12 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <div className="flex gap-4">
-          <ul className="flex items-center  text-sm">
+        <div className="flex gap-4 bg-blue-200 p-2 rounded">
+          <ul className="flex items-center  text-sm gap-3">
             <li>
               <Link href={"/signup"}>SignUp</Link>
             </li>
+            <Separator orientation="vertical" />
             <li>
               <Link href={"/signin"}>SignIn</Link>
             </li>
