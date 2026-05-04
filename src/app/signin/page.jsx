@@ -11,48 +11,35 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import { useRouter } from "next/navigation";
 
 
-export default function SignUpPage() {
-
-    const router = useRouter();
-  const onSubmit = async (e) => {
-      e.preventDefault();
-      
-      const name = e.target.name.value;
-      const image = e.target.image.value;
-      const email = e.target.email.value;
-      const password = e.target.password.value
-      
-      const { data, error } = await authClient.signUp.email({
-          name,
-          email,
-          image,
-          password
-      });   
-      console.log(data, error);
-      if (!error) {
-          router.push("/")
-      }
-  };
-
-  return (
-    <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Sign Up</h1>
+const SignInPage = () => {
+   const onSubmit = async (e) => {
+       e.preventDefault();      
+       
+       const email = e.target.email.value;
+       const password = e.target.password.value
+       
+       const { data, error } = await authClient.signIn.email({          
+           email,           
+           password,
+           callbackURL: "/"
+       });   
+       if (error) {
+           alert("Invalid Credentials")
+       }
+       if (data) {
+           alert("SignIn Successfull")
+       }
+       console.log(data, error);
+   };
+ 
+    
+    return (
+         <Card className="border mx-auto w-125 py-10 mt-5">
+      <h1 className="text-center text-2xl font-bold">Sign In</h1>
 
       <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit}>
-        <TextField isRequired name="name" type="text">
-          <Label>Name</Label>
-          <Input placeholder="Enter your name" />
-          <FieldError />
-        </TextField>
-
-        <TextField isRequired name="image" type="text">
-          <Label>Image URL</Label>
-          <Input placeholder="Image URL" />
-          <FieldError />
-        </TextField>
 
         <TextField
           isRequired
@@ -109,5 +96,7 @@ export default function SignUpPage() {
         </div>
       </Form>
     </Card>
-  );
-}
+    );
+};
+
+export default SignInPage
