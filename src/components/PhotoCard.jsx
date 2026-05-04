@@ -7,6 +7,7 @@ import { AiFillLike } from "react-icons/ai";
 import { BiDownload } from "react-icons/bi";
 import { CiCircleInfo } from "react-icons/ci";
 import { TbListDetails } from "react-icons/tb";
+import Link from "next/link";
 
 const PhotoCard = ({ photo }) => {
   return (
@@ -40,10 +41,11 @@ const PhotoCard = ({ photo }) => {
           {photo.downloads}
         </div>
       </div>
-      <Button className="btn " variant="outline">
+      <Link href={`/all-photos/${photo.id}`}>
+         <Button className="btn " variant="outline">
 <TbListDetails />
       </Button>
-      
+      </Link>
     </Card>
   );
 };
