@@ -1,14 +1,17 @@
+import Categories from '@/components/Categories';
 import PhotoCard from '@/components/PhotoCard';
 import React from 'react';
 
-const AllPhotosPage = async() => {
+const AllPhotosPage = async({searchParams}) => {
        const res = await fetch("https://pixgen-amber-eight.vercel.app/data.json");
     const photos = await res.json();
     // console.log(photos);
 
-    
+  const { category } = await searchParams;
+  const filteredPhotos = category ? photos.filter(photo => photo.category.toLowerCase() == category.toLowerCase()) : photos;
+
     return (
-        <div className='px-2 py-8 bg-pink-50'>
+      <div className='px-2 py-8 bg-pink-50'>       
 <>
   <style>
     {`
@@ -46,13 +49,14 @@ const AllPhotosPage = async() => {
     </h1>
 
     {/* Divider */}
-    <div className="mt-2 h-[3px] bg-black animate-[slideFromLeft_4s_ease-out_forwards]"></div>
+    <div className="mt-2 h-[3px] bg-black animate-[slideFromLeft_4s_ease-out_forwards] my-3"></div>
 
   </div>
-</>
+        </>
+        <Categories/>
             <div className='grid md:grid-cols-4 grid-cols-2 gap-4 m-4'>
                 {
-                    photos.map(photo => <PhotoCard key={photo.id} photo={ photo} />)
+                    filteredPhotos.map(photo => <PhotoCard key={photo.id} photo={ photo} />)
                 }
             </div>
         </div>

@@ -18,6 +18,7 @@ const PhotoCard = ({ photo }) => {
           fill
           alt={photo.title}
           className="rounded"
+          sizes="(min-width: 808px) 50vw, 100vw"
         />
 
         <div className="bg-yellow-100">
