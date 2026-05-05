@@ -4,7 +4,7 @@ import React from 'react';
 const AllPhotosPage = async() => {
        const res = await fetch("https://pixgen-amber-eight.vercel.app/data.json");
     const photos = await res.json();
-    console.log(photos);
+    // console.log(photos);
 
     
     return (

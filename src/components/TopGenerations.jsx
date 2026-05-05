@@ -4,10 +4,10 @@ import PhotoCard from './PhotoCard';
 const TopGenerations = async () => {
     const res = await fetch("https://pixgen-amber-eight.vercel.app/data.json");
     const photos = await res.json();
-    console.log(photos);
+    // console.log(photos);
 
     const topPhotos = photos.slice(0, 8);
-    console.log(topPhotos);
+    // console.log(topPhotos);
     return (
         <div className='px-2 py-8 bg-pink-50'>
             <h2 className="text-3xl font-bold ">Top Generations</h2>

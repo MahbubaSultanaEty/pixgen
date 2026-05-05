@@ -1,7 +1,17 @@
+"use client"
+import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-const photoDetailsPage = async({ params }) => {
+const photoDetailsPage = async ({ params }) => {
+  
+   const userData = authClient.useSession();
+    const user = userData.data?.user;
+      //   console.log(user);
+      if (!user) {
+          redirect("/signin")
+      }
     const { id } = await params;
     // console.log(id);
     const res = await fetch("https://pixgen-amber-eight.vercel.app/data.json");
