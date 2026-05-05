@@ -1,5 +1,4 @@
 "use client";
-import SignupwithGoogleBtn from "@/components/SignupwithGoogleBtn";
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
